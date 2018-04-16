@@ -279,7 +279,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\`OldStart.cshtml" />
     <Content Include="Views\Home\Browse.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
@@ -305,6 +304,8 @@
     <Content Include="Views\Manage\AdminControlPage.cshtml" />
     <Content Include="Views\Home\SampleCause.cshtml" />
     <Content Include="Views\Home\Start.cshtml" />
+    <Content Include="Views\Home\Delete.cshtml" />
+    <Content Include="Views\Home\ViewCause.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
