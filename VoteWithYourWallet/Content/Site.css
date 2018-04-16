@@ -1,0 +1,76 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* Override input width for create new petition form */
+.widthOverride {
+    max-width: 100%;
+}
+
+/* Min height for text box */
+.txtbxMinHeight {
+    min-height: 100px;
+}
+
+/* Custom bootstrap navbar styling CSS override */
+.navbar {
+    background-color: white;
+}
+
+    /* change colour of menu burger button (when window is too small to display all navbar items) */
+    .navbar .navbar-header .navbar-toggle {
+        background-color: crimson;
+    }
+
+    /* change colour of website title */
+    .navbar .navbar-header .navbar-brand {
+        color: red;
+    }
+
+    /* change colour of navbard liks text */
+    .navbar .navbar-nav > li > a {
+        color: black;
+    }
+
+        /* change colour when mouse over links */
+        .navbar .navbar-nav > li > a:hover, .navbar .navbar-nav > li > a:focus {
+            color: red;
+        }
+/* end of custom navbar colours */
+
+/* Jumbotron style */
+.jumbotron {
+    background-image: url('../Images/bg_map.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: aliceblue;
+    padding: 8em;
+}
+
+/* supporters scrollboc for cause page */
+#supporter {
+    height: 45em;
+    border: 1px solid #ccc;    
+    overflow: auto;
+}

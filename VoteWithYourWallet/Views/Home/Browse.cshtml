@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Active Causes";
+}
+<h2>@ViewBag.Title</h2>
+<h3>@ViewBag.Message</h3>
+
+
+<script>
+
+
+    /* old loop to make fake petitions for demonstration
+        var counter = 1;
+    for (var i = 0; i < 20; i++) {
+        $(document).ready(function () {
+            $("#causesList").append("<br><h4><a href='./SampleCause?id=" + counter + "'>Sample cause " + counter + "</a><button type='button' class='close' aria-label='Close'><span aria-hidden='true'>&times;</span></button></h4>" 
+                +
+                "<p>This a sample cause' description text. Lorem ipsum dolor sit amet, vehicula ligula, eu felis, nam ante asperiores nunc, eget ultricies quisque nullam libero, congue et velit justo justo justo mauris. Morbi sagittis sit vestibulum nunc, in ut mauris aliquet porttitor. Eu amet lacus magna, sodales vel a sed, enim libero, nec rhoncus. Pede suscipit, vitae donec, sem ac turpis laoreet mollis suspendisse mi. Sem a, a suspendisse nunc. Eu odio molestie, ipsum massa eget ullamcorper sollicitudin, vulputate purus bibendum maecenas lacus. In vel, nonummy a urna vel, curae eros pellentesque elit nullam eget aenean, orci in. Aliquam quis dapibus nunc, imperdiet mauris scelerisque at, vestibulum aliquet, non aptent vel doloremque tortor eget, viverra quam ipsum suspendisse.</p><br><hr>");
+            counter++;
+        }
+    });
+    */
+    $(document).ready(function() {
+        // if the logged in user is now an admin, hide delete petition button
+        var role = $("#userName").text()
+
+        // admin@votewithyourwallet.com Admin1!
+        if (role != "Hello admin@votewithyourwallet.com!") {
+            $(".close").hide();
+        }
+    });
+
+</script>
+
+<div>
+
+    @foreach (var m in ViewData.Model) {
+        <br/>
+        <h4>
+            <a href='./SampleCause?id=@m.Id'>@m.Title</a>
+            <!--delete button-->
+            <button type='button' class='close' id="@m.Id" aria-label='Close'>
+                <span aria-hidden='true'>&times;</span>
+            </button>
+        </h4>
+        <p>@m.Text</p>
+        <br/>
+    }
+
+</div>
