@@ -8,22 +8,26 @@
 
     var signatures = 0;
 
+    // assign signatures number to variable
     signatures = @Model.Signatures;
 
 
-    // this adjusts the progress bars depending on how many have signed
+    // this adjusts the progress bar depending on how many have signed
     $(document).ready(function() {
-
+        // append "x others are supporting this cause" text
         $('#howManyPeopleHaveSigned').append(signatures + " others are supporting this cause");
+        // show number of signatures on progress bar
         $('.progress-bar').append(signatures);
+        // update progress bar width
         $('.progress-bar').width(signatures + "%");
+        // update progress bar current value
         $('.progress-bar').aria - valuenow(signatures);
-
     });
 
     var counter = 1;
     for (var i = 0; i < signatures; i++) {
-        $(document).ready(function() {
+        $(document).ready(function () {
+            // diaplay names of supporters
             $("#supporter").append("<p>Supporter " + counter + "</p>");
             counter++;
         });
@@ -42,7 +46,7 @@
     <div class="col-md-4">
         <br/>
         <p>Share this cause on social media</p>
-        <!-- Add font awesome icons, only working on Chrome -->
+        <!-- Add font awesome social media icons, only working on Chrome -->
         <a href="https://facebook.com/sharer.php?u=http://localhost:52792/Home/ViewCause/@Model.Id" class="fa fa-facebook"></a>
         <a href="https://twitter.com/intent/tweet?url=http://localhost:52792/Home/ViewCause/@Model.Id&text=@Model.Title" class="fa fa-twitter"></a>
         <a href="https://plus.google.com/share?url=http://localhost:52792/Home/ViewCause/@Model.Id" class="fa fa-google"></a>
@@ -56,6 +60,7 @@
             </div>
         </div>
         <br />
+        <!-- sign petition button -->
         @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
         <div class="form-actions">

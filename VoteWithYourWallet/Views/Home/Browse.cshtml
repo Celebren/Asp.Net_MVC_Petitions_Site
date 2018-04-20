@@ -21,10 +21,10 @@
     */
     $(document).ready(function() {
         // if the logged in user is now an admin, hide delete petition button
-        var role = $("#userName").text()
+        var role = $("#userName").text();
 
         // admin@votewithyourwallet.com Admin1!
-        if (role != "Hello admin@votewithyourwallet.com!") {
+        if (role !== "Hello admin@votewithyourwallet.com!") {
             $(".close").hide();
         }
     });
@@ -32,21 +32,17 @@
 </script>
 
 <div>
-
+    <!-- loop through the passed list of entries in the database and display causes -->
     @foreach (var m in ViewData.Model) {
         <br/>
         <h4>
+            <!-- Title is a link to view the cause. The link takes the cause
+                 Id at the end so it can generate the correct ViewCause view -->
             <a href="/Home/ViewCause/@m.Id">@m.Title</a>
         </h4>
         <!--delete button-->
         <form action="/Home/Delete/@m.Id">
-
             <input type="submit" value="Delete" class='close btn btn-danger btn-sm'>
-            <!-- old X button
-            <button type='button' class='close btn btn-danger btn-md' id="@m.Id" aria-label='Close'>
-                <span aria-hidden='true'>&times;</span>
-            </button>
-            -->
         </form>
 
         <p>@m.Text</p>

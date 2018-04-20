@@ -48,7 +48,7 @@ textarea {
         color: red;
     }
 
-    /* change colour of navbard liks text */
+    /* change colour of navbar links text */
     .navbar .navbar-nav > li > a {
         color: black;
     }
@@ -68,7 +68,7 @@ textarea {
     padding: 8em;
 }
 
-/* supporters scrollboc for cause page */
+/* supporters scrollblock for cause page */
 #supporter {
     height: 45em;
     border: 1px solid #ccc;    

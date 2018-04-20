@@ -26,13 +26,13 @@ namespace VoteWithYourWallet.Controllers {
             return View();
         }
 
-        // Create method
+        // Create new petition
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Start([Bind(Include = "Title, Text")] Petition petition) {
             petition.Signatures = 0;
 
-            // validation; inform user that both fields must be filled
+            // inform user that both fields must be filled
             if (petition.Title == null) {
                 ModelState.AddModelError("",
                     "Please provide a title for your cause");
@@ -52,39 +52,43 @@ namespace VoteWithYourWallet.Controllers {
                 }
             }
             catch (DataException) {
-                ModelState.AddModelError("",
-                    "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+                ModelState.AddModelError("", "Unable to save to database.");
             }
 
             return View(petition);
         }
 
-        // View cause controller
+        // View cause controller Home/ViewCause/petition.id
         public ActionResult ViewCause(int id) {
+            // instantiate petition for database with id taken from method call
             Petition petitionToView = _db.Petitions.Find(id);
             ViewBag.Message = petitionToView.Title;
-
+            
+            // return the view passing the petition to it
             return View(petitionToView);
         }
 
-        // Increment signatures
+        // Increment signatures when the button is pressed
         [HttpPost, ActionName("ViewCause")]
         [ValidateAntiForgeryToken]
         public ActionResult ViewCauseIncremented(int id) {
+            // instantiate petition from database
             Petition petition = _db.Petitions.Find(id);
+            // increase the signatures number by one
             petition.Signatures += 1;
+
             try {
                 if (ModelState.IsValid) {
-                    
+                    // update the entry in the database        
                     _db.Entry(petition).State = EntityState.Modified;
                     _db.SaveChanges();
-                    Debug.WriteLine("petition id: " + petition.Id);
+                    //Debug.WriteLine("petition id: " + petition.Id);
+                    // return the ViewCuase page
                     return RedirectToAction("ViewCause/" + petition.Id);
                 }
             }
             catch (DataException) {
-                ModelState.AddModelError("",
-                    "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+                ModelState.AddModelError("", "Unable to save changes to the database.");
             }
 
             return View(petition);
@@ -94,32 +98,29 @@ namespace VoteWithYourWallet.Controllers {
         public ActionResult Browse() {
             ViewBag.Message = "Browse causes started by others";
 
-            // pass the database using entity framework
+            // pass the database using entity framework as list
             ViewData.Model = _db.Petitions.ToList();
 
             return View();
         }
 
 
-        // /Home/Delete
+        // /Home/Delete/petition.Id
         public ActionResult Delete(int id) {
+            // instantiate and return petition with passed id number
             Petition petitionToBeDeleted = _db.Petitions.Find(id);
             return View(petitionToBeDeleted);
         }
 
-        // Delete method
-        // POST: /Home/Delete/
+        // Delete confirmation
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id) {
+            // find petition with passed id and remove it from the database
             Petition petition = _db.Petitions.Find(id);
             _db.Petitions.Remove(petition);
             _db.SaveChanges();
             return RedirectToAction("Browse");
-        }
-
-        public ActionResult SampleCause() {
-            return View();
         }
     }
 }
